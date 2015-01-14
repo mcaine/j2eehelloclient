@@ -17,6 +17,7 @@
 		<artifactId>helloclient</artifactId>
 		<groupId>com.mikeycaine</groupId>
 		<version>0.0.1-SNAPSHOT</version>
+		
 	</parent>
 
 	<artifactId>helloclient-ejb</artifactId>
@@ -32,14 +33,15 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
 		</license>
 	</licenses>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<version.compiler.plugin>2.3.1</version.compiler.plugin>
+		<cxf.version>3.0.3</cxf.version>
 	</properties>
-	
+
 
 	<dependencies>
 
@@ -123,55 +125,45 @@
 					<target>${maven.compiler.source}</target>
 				</configuration>
 			</plugin>
-			
-			<!-- 
+
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.5</version>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
 				<executions>
 					<execution>
-						<id>xjc</id>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</wsdl>
+									<!-- <wsdl>${basedir}/src/main/resources/myService.wsdl</wsdl>-->
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
 						<goals>
-							<goal>xjc</goal>
+							<goal>wsdl2java</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<packageName>com.mikeycaine.helloclient.generated</packageName>
-					<wsdl>true</wsdl>
-					<xmlschema>false</xmlschema>
-					<schemaFiles>HelloWorld.wsdl</schemaFiles>
-					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
-					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
-				</configuration>
 			</plugin>
-			 -->
-			 
-			<plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>1.10</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlUrls>
-                            	<!-- 
-                                <wsdlUrl>${basedir}/../WebService/target/jaxws/wsgen/wsdl/WebService.wsdl</wsdlUrl>
-                                 -->
-                                 <wsdlUrl>${project.basedir}/src/main/resources/HelloWorld.wsdl</wsdlUrl>
-                            </wsdlUrls>
-                            <packageName>com.mikeycaine.helloclient.generated</packageName>
-                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
-                            <destDir>${basedir}/target/jaxws</destDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jaxb2-maven-plugin</artifactId> 
+				<version>1.5</version> <executions> <execution> <id>xjc</id> <goals> <goal>xjc</goal> 
+				</goals> </execution> </executions> <configuration> <packageName>com.mikeycaine.helloclient.generated</packageName> 
+				<wsdl>true</wsdl> <xmlschema>false</xmlschema> <schemaFiles>HelloWorld.wsdl</schemaFiles> 
+				<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory> 
+				<outputDirectory>${project.basedir}/src/main/java</outputDirectory> <clearOutputDir>false</clearOutputDir> 
+				</configuration> </plugin> -->
+
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jaxws-maven-plugin</artifactId> 
+				<version>1.10</version> <executions> <execution> <goals> <goal>wsimport</goal> 
+				</goals> <configuration> <wsdlUrls> <wsdlUrl>${project.basedir}/src/main/resources/HelloWorld.wsdl</wsdlUrl> 
+				</wsdlUrls> <packageName>com.mikeycaine.helloclient.generated</packageName> 
+				<sourceDestDir>${basedir}/src/main/java</sourceDestDir> <destDir>${basedir}/target/jaxws</destDir> 
+				</configuration> </execution> </executions> </plugin> -->
 
 		</plugins>
 	</build>
