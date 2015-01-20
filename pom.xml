@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mikeycaine</groupId>
 	<artifactId>helloclient</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.5</version>
 	<packaging>pom</packaging>
 
 	<licenses>
@@ -35,7 +35,7 @@
         <connection>scm:git:git@github.com:mcaine/j2eehelloclient.git</connection>
         <url>scm:git:git@github.com:mcaine/j2eehelloclient.git</url>
         <developerConnection>scm:git:git@github.com:mcaine/j2eehelloclient.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>helloclient-0.0.5</tag>
   </scm>
 
 	<properties>
