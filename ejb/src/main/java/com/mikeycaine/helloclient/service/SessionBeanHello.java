@@ -25,8 +25,8 @@ import com.mikeycaine.helloclient.generated.ObjectFactory;
 @LocalBean
 public class SessionBeanHello {
 	
-    @Inject
-    private Logger log;
+    //@Inject
+    //private Logger log;
     
 	@WebServiceRef(wsdlLocation = "http://mike-virtualbox:8080/helloworld/HelloWorld?wsdl")
 	private HelloWorldService service;
