@@ -101,6 +101,29 @@
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <!-- Idea from link: http://stackoverflow.com/questions/2469922/generate-a-version-java-file-in-maven -->
+                            <target>
+                                <property name="resources.dir" value="${basedir}/src/main/webapp/resources/" />
+                                <property name="version.filename" value="version.properties" />
+                                <property name="buildtime" value="${maven.build.timestamp}" />
+                                <echo message="Writing personalised project version string to ${resources.dir}/version.properties..." />
+                                <echo file="${resources.dir}/version.properties" message="app.version = ${project.version}${line.separator}Built at ${buildtime}${line.separator}" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${version.war.plugin}</version>
