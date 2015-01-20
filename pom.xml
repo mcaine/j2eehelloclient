@@ -35,7 +35,7 @@
         <connection>scm:git:git@github.com:mcaine/j2eehelloclient.git</connection>
         <url>scm:git:git@github.com:mcaine/j2eehelloclient.git</url>
         <developerConnection>scm:git:git@github.com:mcaine/j2eehelloclient.git</developerConnection>
-      <tag>helloclient-0.0.2</tag>
+      <tag>helloclient-0.0.3-SNAPSHOT</tag>
   </scm>
 
 	<properties>
