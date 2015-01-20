@@ -15,7 +15,7 @@
 	<parent>
 		<artifactId>helloclient</artifactId>
 		<groupId>com.mikeycaine</groupId>
-		<version>0.0.2</version>
+		<version>0.0.3</version>
 	</parent>
 
 	<artifactId>helloclient-web</artifactId>
@@ -112,4 +112,8 @@
 		</plugins>
 	</build>
 
+
+  <scm>
+    <tag>helloclient-0.0.3</tag>
+  </scm>
 </project>
